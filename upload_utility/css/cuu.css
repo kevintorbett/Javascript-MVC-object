@@ -1,0 +1,126 @@
+.cuu {
+    padding: 10px;
+    min-width: 750px;
+}
+
+.cuu p {
+    font: bold 10px verdana;
+}
+
+.cuu fieldset {
+    border: 1px solid #DDD;
+    font: 10px verdana;
+    border-radius: 4px;
+}
+
+.cuu fieldset legend {
+    color: #4080BF;
+    font: bold 14px verdana;
+}
+
+.cuu-file-properties {
+    float: left;
+     width: 20%;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+
+.cuu-file-properties {
+    float:left; 
+}
+.cuu-file-properties-fieldset p {
+    margin-bottom: 5px; 
+}
+.cuu-file-upload {
+    display: inline-block;
+    width: 70%;
+    height: 400px;
+    overflow:scroll;
+    float:right; 
+}
+.cuu-file-properties-fieldset-recieved-date {
+    width: 200px;
+    margin-right: 2px;
+}
+
+.cuu-file-properties-fieldset-supplier, .cuu-file-properties-fieldset-document-number {
+    display: block;
+    width: 200px;
+    float:left; 
+}
+
+.cuu-file-properties-fieldset-cal-img {
+    display: inline;
+    vertical-align: -4px;
+    margin-left: -24px;
+}
+
+
+/* Thes are for the file upload plugin and are not name spaced */
+
+.fileinput-button {
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.upload-file-list {
+    width: 100%;
+    padding: 5px 5px 5px 0px;
+     overflow:scroll;
+    float:right;
+ }
+
+.progress {
+    background-color: #FFFFFF;
+    border: 1px solid #C5DBEC;
+    width: 100%;
+}
+
+.bar {
+    margin: 0;
+    height: 5px;
+    background: #C5DBEC;
+    vertical-align: middle;
+}
+
+.template-upload {
+    background-color: #F4F8FC;
+    border: 1px solid #C5DBEC;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.template-upload p {
+    margin: 5px;
+    display: inline-block;
+}
+
+.template-upload button {
+    margin: 5px;
+    display: inline-block;
+}
+
+.cancel {
+    float: right;
+    cursor: pointer;
+}
+
+.upload-error {
+    color: red;
+    font-weight: bold;
+    background: #FFD3CB;
+    border: 1px solid #FF8C77;
+}
+
+.upload-success {
+    color: green;
+    font-weight: bold;
+    background: #D4F5E1;
+    border: 1px solid #20EB72;
+}
+
+.working {
+    background: url('/epicor/shared/images/loading.gif') no-repeat right center;
+}
