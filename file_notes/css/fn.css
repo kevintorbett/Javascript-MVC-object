@@ -1,0 +1,24 @@
+.comment-view {
+    -moz-border-radius: 4px 4px 4px 4px;
+    background: url("../images/bkg-toolbar.png") repeat-x scroll 0 top #F8F8F8;
+    border: 1px solid #D6D9D9;
+}
+
+.comment_list {
+    min-height: 10px;
+    max-height: 210px;
+    overflow-y: auto;
+}
+
+.comment-area {
+    background: #EEE;
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    border: 1px solid #4297d7; /* redmond theme */
+}
+
+.comment-area label {
+    font-weight: bold;
+    display: block;
+}

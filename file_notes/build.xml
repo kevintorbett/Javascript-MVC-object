@@ -1,0 +1,141 @@
+<project name="ContentUploadUtility" default="build.dev">
+    <!-- Load properties -->
+    <loadproperties srcfile="build.properties"/>
+    
+    <taskdef name="jshint"
+             classname="com.philmander.jshint.JsHintAntTask" 
+             classpath="${libs.dir}/ant-jshint-ant-jshint-0.3.5/release/ant-jshint-0.3.4-deps.jar"/>
+    
+    <tstamp>
+        <format property="build.time"
+                pattern="MMMM d, yyyy hh:mm:ss"
+                locale="en,US"/>
+    </tstamp>
+    
+    <!-- Initialization and cleanup -->
+    <target name="init">
+        <!--
+        This script takes a CamelCase application name and creates a lowercase, underscore formatted
+        name property for the application file and directories
+        
+        For example an aplication with the following name: MySuperAwesomeApplication
+        Would have files and directories with the following format: my_super_awesome_applcaition
+        
+        This naming pattern is by convention.  Two regex's are used because names like: MyXMLHeaderReader
+        Would have files and directories that have the following format: my_xml_header_reader
+        
+        The all capitols for acronyms like "XML" represent a special case and required another regex.
+        -->
+        <script language="javascript"><![CDATA[
+            var projectName          = project.getProperty("project.name");
+            var projectNameLowerCase = new String(projectName);
+            var pattern              = /([\w])([A-Z][a-z0-9])/g;
+            
+            projectNameLowerCase = projectNameLowerCase.replace(pattern, "$1_$2");
+            pattern              = /([a-z0-9])([A-Z])/g;
+            projectNameLowerCase = projectNameLowerCase.replace(pattern, "$1_$2");
+            projectNameLowerCase = projectNameLowerCase.toLowerCase();
+            
+            echo = project.createTask("echo");
+            echo.setMessage("Creating directories and files for: " + projectNameLowerCase);
+            echo.perform();
+            
+            project.setProperty("project.name.lower", projectNameLowerCase);
+        ]]></script>
+        
+        <mkdir dir="${build.dir}/${project.name.lower}"/>
+    </target>
+    
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+    
+    <target name="runJsHint">
+        <!-- Lint/Validate the code -->
+        <jshint dir="${src.dir}"
+                includes="**/*.js"
+                globals="$: true, jQuery: true, EPICOR: true"
+                options="smarttabs=true,curly=true,evil=true,forin=true,devel=false,latedef=true,noempty=true,undef=true"/>
+    </target>
+    
+    <target name="concatenate">
+        <!-- Concatenate JavaScript files -->
+        <concat destfile="${build.dir}/${project.name.lower}/js/${project.name}-${version}.js" fixlastline="yes" eol="lf">
+            <header>/* Build Time: ${build.time} */</header>
+            <filelist dir="${src.dir}" files="module.js,controller.js,view.js,model.js"/>
+        </concat>
+        <!-- Replace @VERSION@ tag with the build replease version number -->
+        <replaceregexp file="${build.dir}/${project.name.lower}/js/${project.name}-${version}.js"
+                       match="@VERSION@"
+                       replace="${version}"
+                       flags="g"
+                       byline="true"/>
+        <!-- Replace @BUILD-DATE@ tag with the build replease date -->
+        <replaceregexp file="${build.dir}/${project.name.lower}/js/${project.name}-${version}.js"
+                       match="@BUILD-DATE@"
+                       replace="${build.time}"
+                       flags="g"
+                       byline="true"/>
+    </target>
+    
+    <target name="minify">
+        <!-- Minify JavaScript -->
+        <apply executable="java" failonerror="true">
+            <file file="${build.dir}/${project.name.lower}/js/${project.name}-${version}.js"/>
+            <arg line="-jar"/>
+            <arg path="${libs.dir}/yuicompressor/yuicompressor-2.4.8.jar"/>
+            <arg line="--preserve-semi"/>
+            <srcfile/>
+            <arg line="-o"/>
+            <arg line="${build.dir}/${project.name.lower}/js/${project.name}-${version}-min.js"/>
+        </apply>
+        <!-- Minify Cascading Style Sheets -->
+        <apply executable="java" failonerror="true">
+            <file file="${build.dir}/${project.name.lower}/css/${project.name}-${version}.css"/>
+            <arg line="-jar"/>
+            <arg path="${libs.dir}/yuicompressor/yuicompressor-2.4.8.jar"/>
+            <srcfile/>
+            <arg line="-o"/>
+            <arg line="${build.dir}/${project.name.lower}/css/${project.name}-${version}-min.css"/>
+        </apply>
+        <!-- Delete non-minifed versions -->
+        <delete file="${build.dir}/${project.name.lower}/js/${project.name}-${version}.js"/>
+        <delete file="${build.dir}/${project.name.lower}/css/${project.name}-${version}.css"/>
+    </target>
+    
+    <target name="test">
+        <!-- Need to add unit testing framework. -->
+        <echo message="Need to add unit testing framework."/>
+    </target>
+    
+    <target name="document">
+        <!-- Need to add doc generation. -->
+        <echo message="Need to add doc generation."/>
+    </target>
+    
+    <target name="bake">
+        <!-- Need to add file baking. -->
+        <echo message="Need to add file baking."/>
+    </target>
+    
+    <target name="build.dev" depends="clean,init,runJsHint,concatenate">
+        <!--
+        Copy the module css file to the build directory and rename to standard project
+        name with version.  This assumes only one css file for the module.  Will need
+        to concatenate the css files if there are more than one.
+        -->
+        <copy todir="${build.dir}/${project.name.lower}/css">
+            <fileset dir="./css"/>
+            <globmapper from="*.css" to="${project.name}-${version}.css"/>
+        </copy>
+        <!-- Copy any HTML files for the project to the build directory -->
+        <copy todir="${build.dir}/${project.name.lower}">
+            <fileset dir="./" includes="*.html"/>
+        </copy>
+    </target>
+    
+    <target name="build.int" depends="build.dev,minify,test,document"></target>
+    
+    <target name="build.release" depends="build.int,bake"></target>
+    
+</project>
