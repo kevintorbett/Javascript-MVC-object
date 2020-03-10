@@ -9,29 +9,29 @@
  * "JavaScript Patterns" (2010) O'Reilly Media Inc.
  * 
  */
-// Setup EPICOR.IMR.ContentUploadUtility name space
-EPICOR.namespace('EPICOR.IMR.ContentUploadUtility');
+// Setup XXX.ContentUploadUtility name space
+XXX.namespace('XXX.ContentUploadUtility');
 
 // ContentUploadUtility module
-EPICOR.IMR.ContentUploadUtility = (function() {
+XXX.ContentUploadUtility = (function() {
     "use strict";
     
     // Static reference to the default configuration object
     var config = {
             URL: {
-                CONTENT_UPLOAD_UTILITY_HTML: "/epicor/shared/content_upload_utility/cuu.html",
-                FILE_UPLOAD_SERVICE: "/IMDBMiddlewareService/api/imr/batch/upload",
-                DATA_SOURCE_ITEM_SERVICE: "/IMDBMiddlewareService/api/imr/batch/itemDataSource/content/default",
-                SUPPLIER_AUTOCOMPLETE: "/IMDBMiddlewareService/api/imr/supplierMaint/autoSugg/supplier?context=",
-                FILE_DATASOURCE_SERVICE: "/IMDBMiddlewareService/api/imr/batch/itemDataSource",
-                DATA_SOURCE_SUBMISSION_TYPES_DATA: "/IMDBMiddlewareService/api/imr/batch/submission",
-                DATA_SOURCE_CONTENT_TYPES_DATA: "/IMDBMiddlewareService/api/imr/content/type/updatable",
-                DATA_SOURCE_MAPPER_TYPES_DATA: "/IMDBMiddlewareService/api/imr/batch/mapper",
-                QUESTION_ICON: "/epicor/shared/images/question-medium.png",
-                CALENDAR_ICON: "/epicor/shared/images/calendar.png",
-                CANCEL_ICON: "/epicor/shared/images/cancel.png",
-                SUCCESS_ICON: "/epicor/shared/images/check.png",
-                ERROR_ICON: "/epicor/shared/images/x.png"
+                CONTENT_UPLOAD_UTILITY_HTML: "/shared/content_upload_utility/cuu.html",
+                FILE_UPLOAD_SERVICE: "/MiddlewareService/api/imr/batch/upload",
+                DATA_SOURCE_ITEM_SERVICE: "/MiddlewareService/api/imr/batch/itemDataSource/content/default",
+                SUPPLIER_AUTOCOMPLETE: "/MiddlewareService/api/imr/supplierMaint/autoSugg/supplier?context=",
+                FILE_DATASOURCE_SERVICE: "/MiddlewareService/api/imr/batch/itemDataSource",
+                DATA_SOURCE_SUBMISSION_TYPES_DATA: "/MiddlewareService/api/imr/batch/submission",
+                DATA_SOURCE_CONTENT_TYPES_DATA: "/MiddlewareService/api/imr/content/type/updatable",
+                DATA_SOURCE_MAPPER_TYPES_DATA: "/MiddlewareService/api/imr/batch/mapper",
+                QUESTION_ICON: "/shared/images/question-medium.png",
+                CALENDAR_ICON: "/shared/images/calendar.png",
+                CANCEL_ICON: "/shared/images/cancel.png",
+                SUCCESS_ICON: "/shared/images/check.png",
+                ERROR_ICON: "/shared/images/x.png"
             },
             CSS: {
                 MODULE_CONTAINER: "cuu",
@@ -107,7 +107,7 @@ EPICOR.IMR.ContentUploadUtility = (function() {
 
         try {
             // Create a new controller object and pass in the model and view objects
-            controller = new EPICOR.IMR.ContentUploadUtility.Controller(newConfig, container, token, appId, new EPICOR.IMR.ContentUploadUtility.Model(), new EPICOR.IMR.ContentUploadUtility.View());
+            controller = new XXX.ContentUploadUtility.Controller(newConfig, container, token, appId, new XXX.ContentUploadUtility.Model(), new EPICOR.IMR.ContentUploadUtility.View());
 
             controller.init();
         } catch(e) {
@@ -115,9 +115,7 @@ EPICOR.IMR.ContentUploadUtility = (function() {
         }
         
         publicInterface = {
-            vendor: "Epicor Software Corporation",
-            authors: "Timothy Graf/Kevin Torbett",
-            version: "@VERSION@",
+             version: "@VERSION@",
             date: "@BUILD-DATE@",
             name: "New Data Source",
             cleanUp: function() {
