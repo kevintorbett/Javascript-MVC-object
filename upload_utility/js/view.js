@@ -1,12 +1,12 @@
-// Setup EPICOR.IMR.ContentUploadUtility name space
-EPICOR.namespace('EPICOR.IMR.ContentUploadUtility.View');
+// Setup XXX.ContentUploadUtility name space
+XXX.namespace('XXX.ContentUploadUtility.View');
 
-EPICOR.IMR.ContentUploadUtility.View = function() {
+XXX.ContentUploadUtility.View = function() {
     "use strict";
 
     // Guard against this object not being invoked with the "new" operator
-    if (!(this instanceof EPICOR.IMR.ContentUploadUtility.View)) {
-        return new EPICOR.IMR.ContentUploadUtility.View();
+    if (!(this instanceof XXX.ContentUploadUtility.View)) {
+        return new XXX.ContentUploadUtility.View();
     }
 
     var publicInterface,
