@@ -1,12 +1,12 @@
-// Setup EPICOR.IMR.ContentUploadUtility name space
-EPICOR.namespace('EPICOR.IMR.ContentUploadUtility.Model');
+// Setup XXX.ContentUploadUtility name space
+XXX.namespace('XXX.ContentUploadUtility.Model');
 
-EPICOR.IMR.ContentUploadUtility.Model = function() {
+XXX.ContentUploadUtility.Model = function() {
     "use strict";
     
     // Guard against this object not being invoked with the "new" operator
-    if (!(this instanceof EPICOR.IMR.ContentUploadUtility.Model)) {
-        return new EPICOR.IMR.ContentUploadUtility.Model();
+    if (!(this instanceof XXX.ContentUploadUtility.Model)) {
+        return new XXX.ContentUploadUtility.Model();
     }
     
     var base_url = location.protocol + '//' + location.host,
