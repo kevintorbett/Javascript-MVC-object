@@ -1,14 +1,14 @@
-// Setup EPICOR.IMR..imr.ContentUploadUtility name space
-EPICOR.namespace('EPICOR.IMR.imr.ContentUploadUtility.Controller');
+// Setup XXX.ContentUploadUtility name space
+XXX.namespace('xxx.ContentUploadUtility.Controller');
 
-EPICOR.IMR.ContentUploadUtility.Controller = function(config, container, token, appId, model, view) {
+XXX.ContentUploadUtility.Controller = function(config, container, token, appId, model, view) {
     "use strict";
 
     // Guard against this object not being invoked with the "new" operator
-    if (!(this instanceof EPICOR.IMR.ContentUploadUtility.Controller)) {
-        return new EPICOR.IMR.ContentUploadUtility.Controller(config, container, token, appId, model, view);
+    if (!(this instanceof XXX.ContentUploadUtility.Controller)) {
+        return new XXX.ContentUploadUtility.Controller(config, container, token, appId, model, view);
     }
-    var itemDataSourceId,
+    var itemId,
         row_files = 0,
         rows_loaded = 0,
         rows_total = 0,
